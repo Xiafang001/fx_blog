@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block path %}
+    <a href = "{% url 'home'%}">Current&nbsp;:&nbsp;Home&nbsp;</a>»&nbsp;About
+{% endblock %}
+{% block content %}
+<div class="archive">
+	<div id="archives">
+	 <div class="row">
+	    <div class="col-sm-3" >
+      		{% load staticfiles %}    
+     		 <img src="{% static 'images/myface.jpeg' %}" class="img-thumbnail" alt="Xia Fang" width="200" height="300">
+            </div>
+    	    <div class="col-sm-9">
+     		 <h3>Xia Fang</h3>
+     		 <br>
+     		 <br>
+    		 <p> I am a graduated student from The George Washington University. My major is Computer Science.</p> 
+     		 <p>If you have any questions, feel free to contact me.</p>
+     		 <p>Email: xiafang9@gmail.com<br>Phone: 571-276-7412</p>
+     		 <p>Thank you!</p>
+   	    </div>
+         </div>
+	
+	</div>
+</div>
+	
+{% endblock %}
+
+{% block side %}
+	 {% include "blog/_side.html" %}
+{% endblock %}
+
+

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block path %}
+    <a href = "{% url 'home'%}">Current&nbsp;:&nbsp;Home&nbsp;</a>»&nbsp;Message
+{% endblock %}
+{% block content %}
+	
+ <div class="archive">
+  <div id="archives"> 
+	<h3>Leave Your Message Here </h3>
+  </div>
+  <div id="archives">
+     <form method="POST">
+	{% csrf_token %}
+	<div class="row">    
+		<div class="6u 12u(tablet)">{{ form.name.errors}} {{ form.name}}</div>
+		<div class="12u">{{ form.message.errors }} {{ form.message }}</div>
+		<div class="6u 12u(tablet)">{{ form.email.errors }} {{ form.email }}</div>
+		<div class="6u 12u(tablet)">{{ form.website.errors }} {{ form.website }}</div>
+                    <div class="12u">
+                        <button id="submit" name="submit" type="submit">Submit</button>
+                    </div>
+        </div>
+     </form>
+  </div>
+</div>
+	  
+{% endblock %}
+
+{% block side %}
+	{% include "blog/_side.html" %}
+{% endblock %}

@@ -1,0 +1,57 @@
+
+<section id="search" class="widget widget_search">
+	<form role="search" method="get" class="search-form" action="/search/">
+		<input value="" name="s" class="s query" placeholder="Search for" type="text">
+		<button type="submit" class="search-submit"><span style="font-size:20px" class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		<div class="clearfix"></div>
+	</form>
+</section>
+
+<section id="archives" class="widget widget_archive">
+        <h3 class="widget-title">Monthly Archive</h3>		
+	 <ul>
+	 	{% if date_list %}
+		{% for x,y in date_list %}
+		<li><a href="{% url 'archive_month' year=x.year month=x.month %}">{{x.month}}/{{x.year}} ({{y}})</a></li>
+		{% endfor %}
+	{% endif %}
+         </ul>
+</section>
+			
+<section id="categories" class="widget widget_categories">
+	<h3 class="widget-title">Category</h3>		
+	<ul>
+	    {% if classification %}
+		{% for x,y in classification %}
+		<li><a href="{% url 'classfiDetail' classfi=x %}">{{x}} ({{y}})</a></li>
+	    	{% endfor %}
+	    {% endif %}				
+	</ul>			
+</section>
+				
+<section id="tag_cloud" class="widget widget_tag_cloud">
+	<h3 class="widget-title">TagCloud</h3>
+	<div id="example" style="width: 286px; height: 286px;margin-left:-20px;"></div>		
+</section>
+
+<script type="text/javascript">
+      /*!
+       * Create an array of word objects, each representing a word in the cloud
+       */
+      
+        //var list=[["Java", 8], ["Android", 0], ["datebase", 1], ["algorithm", 0]];
+        var list = {{ tagCloud|safe}};
+        var word_array = new Array(); 
+	
+	for( i in list) {
+        	var temp = list[i][0];       
+       		word_array.push({text:list[i][0],weight:list[i][1],link:"/articleTag/"+temp});
+	}
+       
+      	$(function() {
+        	// When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+        	$("#example").jQCloud(word_array);
+     	});
+</script>
+
+  
